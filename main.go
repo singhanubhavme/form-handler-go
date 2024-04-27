@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/singhanubhavme/form-handler-go/configs"
 	"github.com/singhanubhavme/form-handler-go/routes"
 )
@@ -25,6 +26,12 @@ func main() {
 			Message: "success",
 		})
 	})
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,HEAD,PUT,DELETE,PATCH",
+		AllowHeaders: "*",
+	}))
 
 	apiUser := app.Group("/api/user")
 	routes.UserRoute(apiUser)

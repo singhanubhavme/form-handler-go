@@ -8,4 +8,5 @@ import (
 
 func FormRoute(app fiber.Router) {
 	app.Post("/create", middlewares.Protected(), controllers.CreateForm)
+	app.Post("/:user/:formid", controllers.SubmitForm)
 }
